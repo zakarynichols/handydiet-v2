@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-const CuisineOptions = () => {
+const CuisineOptions = ({ setCuisine, setIsLoaded }) => {
     const cuisines = [
         'American',
         'Chinese',
@@ -13,15 +13,20 @@ const CuisineOptions = () => {
         'Thai'
     ];
 
+    const handleClick = (value) => {
+        setIsLoaded(false);
+        setCuisine(value);
+    };
+
     return (
         <div>
-            <div style={{fontSize: '2em'}}><strong>Search Recipes</strong></div>
+            <div style={{ fontSize: '2em' }}><strong>Search Recipes</strong></div>
             <div className="container">
-            {cuisines.map(cuisine => {
-                return (
-                    <div className="cuisine-option"><i class="fas fa-leaf"></i> {cuisine}</div>
-                );
-            })}
+                {cuisines.map((cuisine, index) => {
+                    return (
+                        <div key={index} onClick={() => handleClick(cuisine)} name={cuisine} value={cuisine} className="cuisine-option"><i className="fas fa-leaf"></i> {cuisine}</div>
+                    );
+                })}
             </div>
         </div>
     )

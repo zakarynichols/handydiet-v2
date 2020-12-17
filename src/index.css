@@ -21,8 +21,8 @@ body {
     color: white;
     border-radius: 15px;
     padding: 10px;
-    min-width: 100px;
-    margin: 10px;
+    min-width: 40%;
+    margin: 0px 7.5px 10px 0px;
     text-align: center;
     max-height: 20px;
     box-shadow: 2.5px 5px 4px #888888;
@@ -45,6 +45,20 @@ body {
     box-shadow: 2.5px 2.5px 5px #888888;
     border-radius: 10px;
     background-color: white;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+@media screen and (min-width: 800px) {
+    .recipe-card {
+        width: 25%;
+    }
+}
+
+.recipe-card:hover {
+    transform: translate3D(0,-1px,0) scale(1.03);
+    cursor: pointer;
+    transition: all .4s ease;
 }
 
 .responsive {
