@@ -1,12 +1,19 @@
 body {
-    color: black;
+    background-color: rgb(250, 250, 250);
+    font-family: 'Hammersmith One', sans-serif;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 .cuisine-option {
@@ -17,4 +24,31 @@ body {
     min-width: 100px;
     margin: 10px;
     text-align: center;
+    max-height: 20px;
+    box-shadow: 2.5px 5px 4px #888888;
 }
+
+.cuisine-option:active {
+    background-color: #135a31;
+}
+
+.cuisine-option:hover {
+    background-color: #135a31;
+    cursor: pointer;
+}
+
+.recipe-card {
+    position: relative;
+    width: 33%;
+    margin: 2%;
+    padding: 2%;
+    box-shadow: 2.5px 2.5px 5px #888888;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }

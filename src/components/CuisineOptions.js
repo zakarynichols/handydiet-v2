@@ -15,12 +15,11 @@ const CuisineOptions = () => {
 
     return (
         <div>
-            <h1><strong>Search Recipes</strong></h1>
-            <br />
+            <div style={{fontSize: '2em'}}><strong>Search Recipes</strong></div>
             <div className="container">
             {cuisines.map(cuisine => {
                 return (
-                    <div className="cuisine-option">{cuisine}</div>
+                    <div className="cuisine-option"><i class="fas fa-leaf"></i> {cuisine}</div>
                 );
             })}
             </div>
