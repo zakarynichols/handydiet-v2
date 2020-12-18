@@ -14,7 +14,6 @@ const CuisineOptions = ({ setCuisine, setIsLoaded }) => {
     ];
 
     const handleClick = (value) => {
-        setIsLoaded(false);
         setCuisine(value);
     };
 
