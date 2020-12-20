@@ -16,4 +16,3 @@ The data comes from the third party API, Spoonacular. They're one of the largest
 - run `npm install`.
 - run `npm start`.
 - live reload will serve at `http://localhost:3000`.
-- profit $$$.
