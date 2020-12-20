@@ -14,15 +14,16 @@ const Recipe = () => {
 
     useEffect(() => {
         fetchRecipe();
-    }, [id]);
+    }, []);
 
     const fetchRecipe = async () => {
         try {
             const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
+            console.log(response)
             if (response.ok === true && response.status === 200) {
-                console.log(response)
                 setIsLoaded(true);
                 const toJson = await response.json();
+                console.log(toJson)
                 setRecipe(toJson);
             };
             if (response.ok === false && response.status === 402) {
@@ -38,7 +39,13 @@ const Recipe = () => {
     return (
         <Fragment>
             <LoadingSpinner bool={isLoaded} />
-            <div></div>
+            {recipe &&
+                <div>
+                    <div>{recipe.id}</div>
+                    <div>{recipe.title}</div>
+                    <img src={recipe.image} />
+                    <p>{recipe.summary}</p>
+                </div>}
             <NetworkError bool={networkError.bool} text={networkError.text} />
         </Fragment>
     );
