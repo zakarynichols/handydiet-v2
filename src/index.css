@@ -17,11 +17,11 @@ body {
 }
 
 .cuisine-option {
+    display: inline-flex;
     background-color: #27ae60;
     color: white;
     border-radius: 15px;
-    padding: 10px;
-    min-width: 40%;
+    padding: 10px 20px 10px 20px;
     margin: 0px 7.5px 10px 0px;
     text-align: center;
     max-height: 20px;
@@ -65,4 +65,9 @@ body {
     width: 100%;
     height: auto;
     border-radius: 10px;
+  }
+
+  .wrap-inline-flex {
+      display: flex;
+      justify-content: center;
   }

@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useRef } from 'react';
 import CuisineOptions from './CuisineOptions';
 import NetworkError from '../Errors/NetworkError';
 import Recipes from './Recipes';
-import Loading from '../LoadingSpinner/Loading';
+import LoadingSpinner from '../LoadingSpinner/Loading';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([]);
@@ -40,7 +40,7 @@ const Home = () => {
             };
         } catch (err) {
             console.error(err);
-            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on their free plan.' });
+            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
     };
 
@@ -58,7 +58,7 @@ const Home = () => {
             };
         } catch (err) {
             console.error(err);
-            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on their free plan.' });
+            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
     };
 
@@ -66,7 +66,7 @@ const Home = () => {
         <Fragment>
             <CuisineOptions setCuisine={setCuisine} />
             <Recipes rec={recipes} />
-            <Loading bool={isLoaded} />
+            <LoadingSpinner bool={isLoaded} />
             <NetworkError bool={networkError.bool} text={networkError.text} />
         </Fragment>
     );
