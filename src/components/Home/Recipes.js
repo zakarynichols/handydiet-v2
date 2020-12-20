@@ -1,11 +1,6 @@
 import React from 'react';
 
 const Recipes = ({ rec }) => {
-    const getRandomInt = (min, max) => {
-        const minimum = Math.ceil(min);
-        const maximum = Math.floor(max);
-        return Math.floor(Math.random() * (maximum - minimum) + minimum);
-    };
 
     return (
         <div style={{
@@ -26,7 +21,7 @@ const Recipes = ({ rec }) => {
                             bottom: 5,
                             left: 10,
                             fontSize: '1.5rem'
-                        }}>{getRandomInt(70, 100)}%</div>
+                        }}>{r.spoonacularScore}%</div>
                         <div style={{
                             position: 'absolute',
                             bottom: 5,
@@ -37,7 +32,7 @@ const Recipes = ({ rec }) => {
                 );
             })}
         </div>
-    )
+    );
 };
 
 export default Recipes;

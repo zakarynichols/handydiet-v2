@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CuisineOptions = ({ setCuisine, setIsLoaded }) => {
+const CuisineOptions = ({ setCuisine }) => {
     const cuisines = [
         'American',
         'Chinese',

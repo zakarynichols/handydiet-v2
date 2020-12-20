@@ -1,74 +1,64 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import CuisineOptions from './CuisineOptions';
-import LoadingSpinner from '../LoadingSpinner';
+import NetworkError from '../Errors/NetworkError';
 import Recipes from './Recipes';
-
-const Loading = ({ bool }) => {
-
-    if (bool === false) {
-        return <LoadingSpinner style={{ textAlign: 'center' }} />;
-    } else {
-        return null;
-    };
-};
-
-const NetworkError = ({ bool }) => {
-    if (bool === true) {
-        return (
-            <div style={{ color: 'red', textAlign: 'center' }}>Failed to fetch. Too many requests for the day.</div>
-        );
-    } else {
-        return null;
-    };
-};
+import Loading from '../LoadingSpinner/Loading';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [networkError, setNetworkError] = useState(false);
+    const [networkError, setNetworkError] = useState({
+        bool: false,
+        text: ''
+    });
     const [cuisine, setCuisine] = useState('American');
+    const isMounted = useRef(false);
 
     useEffect(() => {
         fetchRecipes();
     }, []);
 
     useEffect(() => {
-        fetchCuisine();
+        if (isMounted.current) {
+            fetchCuisine();
+        } else {
+            isMounted.current = true;
+        };
     }, [cuisine]);
 
     const fetchRecipes = async () => {
         try {
-            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch/?cuisine=American&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
+            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch/?cuisine=American&addRecipeInformation=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
             if (response.ok === true && response.status === 200) {
                 setIsLoaded(true);
-                const toJson = await Promise.resolve(response.json());
+                const toJson = await response.json();
                 setRecipes(toJson.results);
-            } else if (response.ok === false && response.status === 402) {
-                console.error(response);
+            };
+            if (response.ok === false && response.status === 402) {
                 setIsLoaded(true);
-                await Promise.reject('Too many requests. Only 150 requests per day on the free plan.');
+                throw new Error('Too many requests. Only 150 requests per day on the free plan.');
             };
         } catch (err) {
             console.error(err);
-            setNetworkError(true);
+            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on their free plan.' });
         };
     };
 
     const fetchCuisine = async () => {
         try {
-            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch/?cuisine=${cuisine}&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
+            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch/?cuisine=${cuisine}&addRecipeInformation=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
             if (response.ok === true && response.status === 200) {
                 setIsLoaded(true);
-                const toJson = await Promise.resolve(response.json());
+                const toJson = await response.json();
                 setRecipes(toJson.results);
-            } else if (response.ok === false && response.status === 402) {
-                console.error(response);
+            };
+            if (response.ok === false && response.status === 402) {
                 setIsLoaded(true);
-                await Promise.reject('Too many requests. Only 150 requests per day on the free plan.');
+                throw new Error('Too many requests. Only 150 requests per day on the free plan.');
             };
         } catch (err) {
             console.error(err);
-            setNetworkError(true);
+            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on their free plan.' });
         };
     };
 
@@ -77,7 +67,7 @@ const Home = () => {
             <CuisineOptions setCuisine={setCuisine} />
             <Recipes rec={recipes} />
             <Loading bool={isLoaded} />
-            <NetworkError bool={networkError} />
+            <NetworkError bool={networkError.bool} text={networkError.text} />
         </Fragment>
     );
 };
