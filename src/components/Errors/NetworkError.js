@@ -14,7 +14,7 @@ const NetworkError = ({ bool, text }) => {
             }}>{text}</div>
             </div>
         );
-    }
+    };
     return bool;
 };
 

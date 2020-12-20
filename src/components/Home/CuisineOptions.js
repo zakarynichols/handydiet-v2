@@ -20,6 +20,7 @@ const CuisineOptions = ({ setCuisine }) => {
     return (
         <div>
             <div style={{ fontSize: '2em' }}><strong>Search Recipes</strong></div>
+            <div style={{color: '#cdcdcd'}}>Choose a cuisine you like and find tasty recipes!</div>
             <div className="container">
                 {cuisines.map((cuisine, index) => {
                     return (
@@ -28,7 +29,7 @@ const CuisineOptions = ({ setCuisine }) => {
                 })}
             </div>
         </div>
-    )
+    );
 };
 
 export default CuisineOptions;
