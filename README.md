@@ -8,8 +8,11 @@ The data comes from the third party API, Spoonacular. They're one of the largest
 
 ### Get Started 🚀
 
-- sign up for API key on spoonacular webiste.
-- go to console and copy API key.
+- sign up for API key on [Spoonacular Website](https://spoonacular.com/food-api).
+- click the green **Start Now** button in the top-right corner.
+- login and click **My Console** button in the top-right corner.
+- click **Profile** tab on left.
+- click **Show/Hide API Key** and copy the key.
 - clone repo.
 - create `.env` file inside root.
 - inside `.env` type `REACT_APP_SPOONACULAR_API_KEY=your api key here...`
