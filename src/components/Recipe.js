@@ -9,8 +9,9 @@ const Recipe = () => {
     const [networkError, setNetworkError] = useState({
         bool: false,
         text: ''
-    })
+    });
     const [recipe, setRecipe] = useState(null);
+    const [ingredients, setIngredients] = useState([]);
 
     useEffect(() => {
         fetchRecipe();
@@ -23,8 +24,8 @@ const Recipe = () => {
             if (response.ok === true && response.status === 200) {
                 setIsLoaded(true);
                 const toJson = await response.json();
-                console.log(toJson)
                 setRecipe(toJson);
+                setIngredients(toJson.extendedIngredients);
             };
             if (response.ok === false && response.status === 402) {
                 setIsLoaded(true);
@@ -36,16 +37,32 @@ const Recipe = () => {
         };
     };
 
+    const handleChange = (e) => {
+        const newArr = [...ingredients];
+        newArr.map(i => {
+            return i.newAmount = i.amount * e.target.value
+        });
+        setIngredients(newArr);
+    };
+
     return (
         <Fragment>
             <LoadingSpinner bool={isLoaded} />
             {recipe &&
-                <div>
+                <Fragment>
                     <div>{recipe.id}</div>
                     <div>{recipe.title}</div>
                     <img src={recipe.image} />
-                    <p>{recipe.summary}</p>
-                </div>}
+                    <p>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <div>
+                        {ingredients && ingredients.map(ingredient => {
+                            return (
+                                <div>{ingredient.name} | {ingredient.newAmount ? ingredient.newAmount : ingredient.amount} {ingredient.unit}</div>
+                            );
+                        })}
+                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
+                    </div>
+                </Fragment>}
             <NetworkError bool={networkError.bool} text={networkError.text} />
         </Fragment>
     );
