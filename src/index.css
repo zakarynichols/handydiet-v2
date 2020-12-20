@@ -38,6 +38,8 @@ body {
 }
 
 .recipe-card {
+    text-decoration: none;
+    color: black;
     position: relative;
     width: 33%;
     margin: 2%;

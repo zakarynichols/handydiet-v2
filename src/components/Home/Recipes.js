@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Recipes = ({ rec }) => {
 
@@ -12,7 +13,7 @@ const Recipes = ({ rec }) => {
         }}>
             {rec.map(r => {
                 return (
-                    <div key={r.id} className="recipe-card">
+                    <Link key={r.id} to={`/recipe/${r.id}`} className="recipe-card">
                         <img src={r.image} className="responsive" />
                         <div style={{ overflowWrap: 'break-word' }}>{r.title}</div>
                         <br />
@@ -28,7 +29,7 @@ const Recipes = ({ rec }) => {
                             right: 10,
                             fontSize: '1.5rem'
                         }}><i style={{ color: 'red' }} className="fas fa-heart"></i></div>
-                    </div>
+                    </Link>
                 );
             })}
         </div>

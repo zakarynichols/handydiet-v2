@@ -10,7 +10,7 @@ const Home = () => {
     const [networkError, setNetworkError] = useState({
         bool: false,
         text: ''
-    });
+    })
     const [cuisine, setCuisine] = useState('American');
     const isMounted = useRef(false);
 
