@@ -3,38 +3,59 @@ body {
     font-family: 'Hammersmith One', sans-serif;
 }
 
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+}
+
+button {
+    font-size: 100%;
+    font-family: inherit;
+    padding: 0;
+    border: 0;
+}
+
 .container {
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
+
 .container::-webkit-scrollbar {
     display: none;
 }
 
 .cuisine-option {
     display: inline-flex;
-    background-color: #27ae60;
-    color: white;
+    align-items: center;
+    background-color: white;
+    color: black;
     border-radius: 15px;
-    padding: 10px 20px 10px 20px;
+    padding: 15px 20px 15px 20px;
     margin: 0px 7.5px 10px 0px;
     text-align: center;
     max-height: 20px;
-    box-shadow: 2.5px 5px 4px #888888;
+    box-shadow: 1px 2.5px 2px #888888;
+    cursor: pointer;
 }
 
-.cuisine-option:active {
-    background-color: #135a31;
+.cuisine-option:focus {
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+    outline: 0;
 }
 
 .cuisine-option:hover {
-    background-color: #135a31;
+    background-color: #27ae60;
     cursor: pointer;
+    color: white;
 }
 
 .recipe-card {
@@ -58,18 +79,20 @@ body {
 }
 
 .recipe-card:hover {
-    transform: translate3D(0,-1px,0) scale(1.03);
+    transform: translate3D(0, -1px, 0) scale(1.03);
     cursor: pointer;
     transition: all .4s ease;
 }
 
 .responsive {
-    width: 100%;
-    height: auto;
+    display: block;
+    /* width: 100%; */
+    margin: auto;
     border-radius: 10px;
-  }
+    max-width: 75%;
+}
 
-  .wrap-inline-flex {
-      display: flex;
-      justify-content: center;
-  }
+.wrap-inline-flex {
+    display: flex;
+    justify-content: center;
+}

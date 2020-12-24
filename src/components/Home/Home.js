@@ -9,8 +9,8 @@ const Home = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [networkError, setNetworkError] = useState({
         bool: false,
-        text: ''
-    })
+        message: ''
+    });
     const [cuisine, setCuisine] = useState('American');
     const isMounted = useRef(false);
 
@@ -32,6 +32,7 @@ const Home = () => {
             if (response.ok === true && response.status === 200) {
                 setIsLoaded(true);
                 const toJson = await response.json();
+                console.warn(toJson);
                 setRecipes(toJson.results);
             };
             if (response.ok === false && response.status === 402) {
@@ -40,7 +41,7 @@ const Home = () => {
             };
         } catch (err) {
             console.error(err);
-            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
+            setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
     };
 
@@ -58,7 +59,7 @@ const Home = () => {
             };
         } catch (err) {
             console.error(err);
-            setNetworkError({ bool: true, text: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
+            setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
     };
 
@@ -67,7 +68,7 @@ const Home = () => {
             <CuisineOptions setCuisine={setCuisine} />
             <Recipes rec={recipes} />
             <LoadingSpinner bool={isLoaded} />
-            <NetworkError bool={networkError.bool} text={networkError.text} />
+            <NetworkError bool={networkError.bool} message={networkError.message} />
         </Fragment>
     );
 };

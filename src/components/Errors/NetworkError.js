@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NetworkError = ({ bool, text }) => {
+const NetworkError = ({ bool, message }) => {
     if (bool === true) {
         return (
             <div className="wrap-inline-flex">
@@ -11,7 +11,7 @@ const NetworkError = ({ bool, text }) => {
                 backgroundColor: '#ff4d40',
                 padding: '1em',
                 borderRadius: '.5em',
-            }}>{text}</div>
+            }}>{message}</div>
             </div>
         );
     };

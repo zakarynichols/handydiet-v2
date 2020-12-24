@@ -24,7 +24,7 @@ const CuisineOptions = ({ setCuisine }) => {
             <div className="container">
                 {cuisines.map((cuisine, index) => {
                     return (
-                        <div key={index} onClick={() => handleClick(cuisine)} name={cuisine} value={cuisine} className="cuisine-option"><i style={{marginRight: '5px'}} className="fas fa-leaf"></i>{cuisine}</div>
+                        <button key={index} onClick={() => handleClick(cuisine)} name={cuisine} value={cuisine} className="cuisine-option"><i style={{marginRight: '5px'}} className="fas fa-leaf"></i>{cuisine}</button>
                     );
                 })}
             </div>
