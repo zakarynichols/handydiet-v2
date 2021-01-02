@@ -99,6 +99,10 @@ const Recipe = () => {
                     <h1>{recipe.title}</h1>
                     <img className="responsive" src={recipe.image} />
                     <p style={{ width: '70vw', padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <div style={{textAlign: 'center'}}>
+                        <label>Servings: </label>
+                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
+                    </div>
                     <div style={{ width: '80vw', margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
                         {ingredients && ingredients.map(ingredient => {
                             return (
@@ -109,10 +113,6 @@ const Recipe = () => {
                                 </div>
                             );
                         })}
-                    </div>
-                    <div style={{ margin: 'auto', display: 'flex', width: '70vw' }}>
-                        <label>Text Input</label>
-                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
                     </div>
                 </div>}
             <NetworkError bool={networkError.bool} message={networkError.message} />
