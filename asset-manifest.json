@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/handydiet-v2/static/css/main.c025e58d.chunk.css",
-    "main.js": "/handydiet-v2/static/js/main.e1b2d727.chunk.js",
-    "main.js.map": "/handydiet-v2/static/js/main.e1b2d727.chunk.js.map",
+    "main.css": "/handydiet-v2/static/css/main.6a7a7a52.chunk.css",
+    "main.js": "/handydiet-v2/static/js/main.da7957b6.chunk.js",
+    "main.js.map": "/handydiet-v2/static/js/main.da7957b6.chunk.js.map",
     "runtime-main.js": "/handydiet-v2/static/js/runtime-main.a4d4e44b.js",
     "runtime-main.js.map": "/handydiet-v2/static/js/runtime-main.a4d4e44b.js.map",
     "static/js/2.72d4f30b.chunk.js": "/handydiet-v2/static/js/2.72d4f30b.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.5b16490c.chunk.js": "/handydiet-v2/static/js/3.5b16490c.chunk.js",
     "static/js/3.5b16490c.chunk.js.map": "/handydiet-v2/static/js/3.5b16490c.chunk.js.map",
     "index.html": "/handydiet-v2/index.html",
-    "static/css/main.c025e58d.chunk.css.map": "/handydiet-v2/static/css/main.c025e58d.chunk.css.map",
+    "static/css/main.6a7a7a52.chunk.css.map": "/handydiet-v2/static/css/main.6a7a7a52.chunk.css.map",
     "static/js/2.72d4f30b.chunk.js.LICENSE.txt": "/handydiet-v2/static/js/2.72d4f30b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a4d4e44b.js",
     "static/js/2.72d4f30b.chunk.js",
-    "static/css/main.c025e58d.chunk.css",
-    "static/js/main.e1b2d727.chunk.js"
+    "static/css/main.6a7a7a52.chunk.css",
+    "static/js/main.da7957b6.chunk.js"
   ]
 }
