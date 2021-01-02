@@ -76,6 +76,9 @@ button {
     .recipe-card {
         width: 25%;
     }
+    .recipe-details {
+        width: 50vw;
+    }
 }
 
 .recipe-card:hover {

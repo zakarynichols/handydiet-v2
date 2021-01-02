@@ -14,7 +14,7 @@ const Recipes = ({ rec }) => {
             {rec.map(r => {
                 return (
                     <Link key={r.id} to={`/recipe/${r.id}`} className="recipe-card">
-                        <img src={r.image} className="responsive" />
+                        <img src={r.image} alt="recipe" className="responsive" />
                         <div style={{ overflowWrap: 'break-word' }}>{r.title}</div>
                         <br />
                         <div style={{
