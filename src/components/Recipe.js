@@ -38,19 +38,16 @@ const Recipe = () => {
             yValueFormatString: "#,###'%'",
             dataPoints: [
                 {
-                    name: "Carbs",
                     y: nutrition.caloricBreakdown ? nutrition.caloricBreakdown.percentCarbs : null,
-                    name: `Carbs ${nutrition.caloricBreakdown ? nutrition.nutrients[3].amount : null}g`
+                    name: `Carbs ${nutrition.caloricBreakdown ? parseInt(nutrition.nutrients[3].amount, 10) : null}g`
                 },
                 {
-                    name: "Protein",
                     y: nutrition.caloricBreakdown ? nutrition.caloricBreakdown.percentProtein : null,
-                    name: `Protein ${nutrition.caloricBreakdown ? nutrition.nutrients[8].amount : null}g`
+                    name: `Protein ${nutrition.caloricBreakdown ? parseInt(nutrition.nutrients[8].amount, 10) : null}g`
                 },
                 {
-                    name: "Fat",
                     y: nutrition.caloricBreakdown ? nutrition.caloricBreakdown.percentFat : null,
-                    name: `Fat ${nutrition.caloricBreakdown ? nutrition.nutrients[1].amount : null}g`
+                    name: `Fat ${nutrition.caloricBreakdown ? parseInt(nutrition.nutrients[1].amount, 10) : null}g`
                 },
             ]
         }]
@@ -96,6 +93,10 @@ const Recipe = () => {
                     <h1>{recipe.title}</h1>
                     <img className="responsive" alt="recipe" src={recipe.image} />
                     <p style={{ width: '70vw', padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <div style={{textAlign: 'center'}}>
+                        <label>Servings: </label>
+                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
+                    </div>
                     <div style={{ width: '80vw', margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
                         {ingredients && ingredients.map(ingredient => {
                             return (
@@ -106,10 +107,6 @@ const Recipe = () => {
                                 </div>
                             );
                         })}
-                    </div>
-                    <div style={{ margin: 'auto', display: 'flex', width: '70vw' }}>
-                        <label>Text Input</label>
-                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
                     </div>
                 </div>}
             {networkError.bool === true && <NetworkError bool={networkError.bool} message={networkError.message} />}
