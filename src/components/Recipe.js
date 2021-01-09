@@ -54,30 +54,29 @@ const Recipe = () => {
     };
 
     useEffect(() => {
-        fetchRecipe();
-    }, []);
-
-    const fetchRecipe = async () => {
-        try {
-            const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
-            console.log(response)
-            if (response.ok === true && response.status === 200) {
-                setIsLoaded(true);
-                const toJson = await response.json();
-                console.warn(toJson);
-                setRecipe(toJson);
-                setIngredients(toJson.extendedIngredients);
-                setNutrition(toJson.nutrition)
+        const fetchRecipe = async () => {
+            try {
+                const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
+                console.log(response)
+                if (response.ok === true && response.status === 200) {
+                    setIsLoaded(true);
+                    const toJson = await response.json();
+                    console.warn(toJson);
+                    setRecipe(toJson);
+                    setIngredients(toJson.extendedIngredients);
+                    setNutrition(toJson.nutrition)
+                };
+                if (response.ok === false && response.status === 402) {
+                    setIsLoaded(true);
+                    throw new Error('Too many requests. Only 150 requests per day on the free plan.');
+                };
+            } catch (err) {
+                console.error(err);
+                setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
             };
-            if (response.ok === false && response.status === 402) {
-                setIsLoaded(true);
-                throw new Error('Too many requests. Only 150 requests per day on the free plan.');
-            };
-        } catch (err) {
-            console.error(err);
-            setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
-    };
+        fetchRecipe();
+    }, [id]);
 
     const handleChange = (e) => {
         const newArr = [...ingredients];
@@ -86,6 +85,7 @@ const Recipe = () => {
     };
 
     return (
+<<<<<<< HEAD
         <div className="recipe-details" style={{margin: 'auto'}}>
             <LoadingSpinner bool={isLoaded} />
             {recipe &&
@@ -94,11 +94,25 @@ const Recipe = () => {
                     <h1>{recipe.title}</h1>
                     <img className="responsive" alt="recipe" src={recipe.image} />
                     <p style={{ padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+=======
+        <div>
+            {isLoaded === false && networkError.bool === false ? <LoadingSpinner /> :
+                recipe &&
+                <div style={{ marginBottom: '5em' }} key={recipe.id}>
+                    <div>{recipe.id}</div>
+                    <h1>{recipe.title}</h1>
+                    <img className="responsive" alt="recipe" src={recipe.image} />
+                    <p style={{ width: '70vw', padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+>>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
                     <div style={{textAlign: 'center'}}>
                         <label>Servings: </label>
                         <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
                     </div>
+<<<<<<< HEAD
                     <div style={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
+=======
+                    <div style={{ width: '80vw', margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
+>>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
                         {ingredients && ingredients.map(ingredient => {
                             return (
                                 <div style={{ padding: '2em', 'flex': '1 1 80px' }} key={ingredient.id}>
@@ -110,7 +124,7 @@ const Recipe = () => {
                         })}
                     </div>
                 </div>}
-            <NetworkError bool={networkError.bool} message={networkError.message} />
+            {networkError.bool === true && <NetworkError bool={networkError.bool} message={networkError.message} />}
             {nutrition.caloricBreakdown && <CanvasJSChart options={options} />}
         </div>
     );
