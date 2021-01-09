@@ -2,11 +2,7 @@
   "name": "handydiet-v2",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
   "homepage": "http://zaknicholsdev.github.io/handydiet-v2",
-=======
-  "homepage": "https://myusername.github.io/handydiet-v2",
->>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -19,11 +15,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-<<<<<<< HEAD
-     "predeploy": "npm run build",
-=======
     "predeploy": "npm run build",
->>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",

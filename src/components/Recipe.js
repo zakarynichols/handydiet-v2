@@ -85,37 +85,22 @@ const Recipe = () => {
     };
 
     return (
-<<<<<<< HEAD
-        <div className="recipe-details" style={{margin: 'auto'}}>
-            <LoadingSpinner bool={isLoaded} />
-            {recipe &&
+        <div style={{ width: '80vw', margin: 'auto'}}>
+            {isLoaded === false && networkError.bool === false ? <LoadingSpinner /> :
+                recipe &&
                 <div key={recipe.id}>
                     <div>{recipe.id}</div>
                     <h1>{recipe.title}</h1>
                     <img className="responsive" alt="recipe" src={recipe.image} />
-                    <p style={{ padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
-=======
-        <div>
-            {isLoaded === false && networkError.bool === false ? <LoadingSpinner /> :
-                recipe &&
-                <div style={{ marginBottom: '5em' }} key={recipe.id}>
-                    <div>{recipe.id}</div>
-                    <h1>{recipe.title}</h1>
-                    <img className="responsive" alt="recipe" src={recipe.image} />
-                    <p style={{ width: '70vw', padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
->>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
+                    <p style={{ padding: '2em', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
                     <div style={{textAlign: 'center'}}>
                         <label>Servings: </label>
-                        <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
+                        <input type="number" onChange={(e) => handleChange(e)} min="1" defaultValue="1" max="20" step="1" />
                     </div>
-<<<<<<< HEAD
-                    <div style={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
-=======
-                    <div style={{ width: '80vw', margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
->>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
+                    <div style={{ display: 'flex', flexWrap: 'wrap', textAlign: 'center', marginBottom: '2em' }}>
                         {ingredients && ingredients.map(ingredient => {
                             return (
-                                <div style={{ padding: '2em', 'flex': '1 1 80px' }} key={ingredient.id}>
+                                <div style={{ margin: '1em', flexGrow: '1' , width: '20%'}} key={ingredient.id}>
                                     <strong>{ingredient.name}</strong>
                                     <br />
                                     {ingredient.newAmount ? ingredient.newAmount : ingredient.amount} {ingredient.unit}

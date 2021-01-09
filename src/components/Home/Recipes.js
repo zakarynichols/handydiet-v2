@@ -13,15 +13,9 @@ const Recipes = ({ recipes }) => {
         }}>
             {recipes.map(recipe => {
                 return (
-<<<<<<< HEAD
-                    <Link key={r.id} to={`/recipe/${r.id}`} className="recipe-card">
-                        <img src={r.image} alt="recipe" className="responsive" />
-                        <div style={{ overflowWrap: 'break-word' }}>{r.title}</div>
-=======
                     <Link key={recipe.id} to={`/recipe/${recipe.id}`} className="recipe-card">
                         <img src={recipe.image} alt="recipe" className="responsive" />
                         <div style={{ overflowWrap: 'break-word' }}>{recipe.title}</div>
->>>>>>> 59b94c074e2820253969f4cfa6fa5025878c50a5
                         <br />
                         <div style={{
                             position: 'absolute',
