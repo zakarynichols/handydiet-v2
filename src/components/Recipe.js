@@ -1,8 +1,6 @@
 import React, {
     useState,
-    useEffect,
-    useCallback,
-    useRef
+    useEffect
 } from 'react';
 import LoadingSpinner from './LoadingSpinner/Loading';
 import { useParams } from 'react-router-dom';
@@ -59,30 +57,29 @@ const Recipe = () => {
     };
 
     useEffect(() => {
-        fetchRecipe();
-    }, []);
-
-    const fetchRecipe = async () => {
-        try {
-            const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
-            console.log(response)
-            if (response.ok === true && response.status === 200) {
-                setIsLoaded(true);
-                const toJson = await response.json();
-                console.warn(toJson);
-                setRecipe(toJson);
-                setIngredients(toJson.extendedIngredients);
-                setNutrition(toJson.nutrition)
+        const fetchRecipe = async () => {
+            try {
+                const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`)
+                console.log(response)
+                if (response.ok === true && response.status === 200) {
+                    setIsLoaded(true);
+                    const toJson = await response.json();
+                    console.warn(toJson);
+                    setRecipe(toJson);
+                    setIngredients(toJson.extendedIngredients);
+                    setNutrition(toJson.nutrition)
+                };
+                if (response.ok === false && response.status === 402) {
+                    setIsLoaded(true);
+                    throw new Error('Too many requests. Only 150 requests per day on the free plan.');
+                };
+            } catch (err) {
+                console.error(err);
+                setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
             };
-            if (response.ok === false && response.status === 402) {
-                setIsLoaded(true);
-                throw new Error('Too many requests. Only 150 requests per day on the free plan.');
-            };
-        } catch (err) {
-            console.error(err);
-            setNetworkError({ bool: true, message: 'Sorry! The Spoonacular API only allows 150 requests per day on the free plan.' });
         };
-    };
+        fetchRecipe();
+    }, [id]);
 
     const handleChange = (e) => {
         const newArr = [...ingredients];
@@ -92,12 +89,12 @@ const Recipe = () => {
 
     return (
         <div>
-            <LoadingSpinner bool={isLoaded} />
-            {recipe &&
+            {isLoaded === false && networkError.bool === false ? <LoadingSpinner /> :
+                recipe &&
                 <div style={{ marginBottom: '5em' }} key={recipe.id}>
                     <div>{recipe.id}</div>
                     <h1>{recipe.title}</h1>
-                    <img className="responsive" src={recipe.image} />
+                    <img className="responsive" alt="recipe" src={recipe.image} />
                     <p style={{ width: '70vw', padding: '2em', margin: 'auto', marginTop: '2em' }}>{recipe.summary.replace(/(<([^>]+)>)/gi, "")}</p>
                     <div style={{ width: '80vw', margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
                         {ingredients && ingredients.map(ingredient => {
@@ -115,7 +112,7 @@ const Recipe = () => {
                         <input type="number" onChange={(e) => handleChange(e)} min="1" max="20" step="1" />
                     </div>
                 </div>}
-            <NetworkError bool={networkError.bool} message={networkError.message} />
+            {networkError.bool === true && <NetworkError bool={networkError.bool} message={networkError.message} />}
             {nutrition.caloricBreakdown && <CanvasJSChart options={options} />}
         </div>
     );

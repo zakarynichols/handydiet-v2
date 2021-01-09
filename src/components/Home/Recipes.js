@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Recipes = ({ rec }) => {
+const Recipes = ({ recipes }) => {
 
     return (
         <div style={{
@@ -11,18 +11,18 @@ const Recipes = ({ rec }) => {
             flexWrap: 'wrap',
             justifyContent: 'center'
         }}>
-            {rec.map(r => {
+            {recipes.map(recipe => {
                 return (
-                    <Link key={r.id} to={`/recipe/${r.id}`} className="recipe-card">
-                        <img src={r.image} className="responsive" />
-                        <div style={{ overflowWrap: 'break-word' }}>{r.title}</div>
+                    <Link key={recipe.id} to={`/recipe/${recipe.id}`} className="recipe-card">
+                        <img src={recipe.image} alt="recipe" className="responsive" />
+                        <div style={{ overflowWrap: 'break-word' }}>{recipe.title}</div>
                         <br />
                         <div style={{
                             position: 'absolute',
                             bottom: 5,
                             left: 10,
                             fontSize: '1.5rem'
-                        }}>{r.spoonacularScore}%</div>
+                        }}>{recipe.spoonacularScore}%</div>
                         <div style={{
                             position: 'absolute',
                             bottom: 5,
