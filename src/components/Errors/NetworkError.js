@@ -13,7 +13,7 @@ const NetworkError = ({ bool, message }) => {
                     borderRadius: '.5em',
                     border: '2px solid #d11608'
                 }}>
-                    <i class="fas fa-exclamation-circle" style={{marginRight: '.5em'}}></i>
+                    <i className="fas fa-exclamation-circle" style={{marginRight: '.5em'}}></i>
                     {message}</div>
             </div>
         );
