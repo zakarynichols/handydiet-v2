@@ -20,11 +20,11 @@ const CuisineOptions = ({ setCuisine }) => {
     return (
         <div>
             <div style={{ fontSize: '2em' }}><strong>Search Recipes</strong></div>
-            <div style={{color: '#cdcdcd'}}>Choose a cuisine you like and find tasty recipes!</div>
+            <div style={{color: '#767676'}}>Choose a cuisine you like and find tasty recipes!</div>
             <div className="container">
                 {cuisines.map((cuisine, index) => {
                     return (
-                        <button key={index} onClick={() => handleClick(cuisine)} name={cuisine} value={cuisine} className="cuisine-option"><i style={{marginRight: '5px'}} className="fas fa-leaf"></i>{cuisine}</button>
+                        <button key={index} onClick={() => handleClick(cuisine)} name={cuisine} value={cuisine} className="cuisine-option"><i style={{marginRight: '5px'}} className="fas fa-utensils"></i>{cuisine}</button>
                     );
                 })}
             </div>
